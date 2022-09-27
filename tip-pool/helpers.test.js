@@ -1,4 +1,3 @@
-
 describe("sumPaymentTotal testing output", function() {
     beforeEach(function(){
         allPayments = {
@@ -58,5 +57,38 @@ describe("Testing that appendTd adds a child to td, increasing length", function
             child.remove();
         }
     })
+})
 
+// function appendDeleteBtn(tr){
+//     let deleteTd = document.createElement('td')
+//     deleteTd.innerText = 'X';
+  
+//     deleteTd.addEventListener("click", function(e){
+//       e.target.parentElement.remove();
+//     })
+//     tr.append(deleteTd);
+//   }
+
+describe("Testing appendDeleteBtn functionality on server table", function() {
+    let tbody;
+    let testTr;
+
+    beforeEach(function(){
+        tbody = document.querySelector("#serverTable tbody")
+        testTr = document.createElement('tr');
+
+        tbody.append(testTr);
+    })
+    
+    it('Should be appended to the server body tr as the last child', function(){
+        appendTd(testTr, 'Matt');
+        appendDeleteBtn(testTr);
+        expect(testTr.lastElementChild.innerText).toEqual('X');
+    })
+
+    afterEach(function(){
+        for(let child of tbody.children){
+            child.remove();
+        }
+    })
 })
